@@ -1,4 +1,5 @@
 const users=require('../users.json');
+const fs =require('fs');
 function getAllUsers(req,res){
   try{
     res.json(users)
@@ -16,7 +17,24 @@ function getUsers(req,res){
   }
 }
 
+function addUser(req,res){
+  try{
+    req.body.id =users.length+1;
+    users.push.req.body;
+    fs.writeFile('users.json',JSON.stringify(users),(err)=>{
+      if(err){
+        console.log(err);
+      }else {
+        res.end('user Added..')
+      }
+    })
+  }catch(err){
+
+  }
+}
+
 module.exports ={
   getAllUsers,
-  getUsers
+  getUsers,
+  addUser
 }

@@ -1,5 +1,6 @@
 const express =require('express')
 const router =express.Router();
+router.use(express.json())
 const usercontroller =require('../controllers/usercontroller')
 
 
@@ -11,6 +12,8 @@ router.get('/user/:id',(req,res)=>{
   usercontroller.getUsers(req,res);
 })
 
-
+router.post('/add/user',(req,res)=>{
+  usercontroller.addUser(req,res);
+})
 
 module.exports=router; 
